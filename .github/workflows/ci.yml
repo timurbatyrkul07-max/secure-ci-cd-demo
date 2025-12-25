@@ -1,0 +1,29 @@
+name: CI Day 1 - Basics
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  basic-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show files
+        run: ls -la
+
+      - name: Check index.html
+        run: |
+          if [ -f index.html ]; then
+            echo "✅ index.html exists"
+          else
+            echo "❌ index.html missing"
+            exit 1
+          fi
+
+      - name: Finish
+        run: echo "CI pipeline finished successfully"
